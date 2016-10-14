@@ -1,3 +1,12 @@
-<div ng-controller="TableController as tc">
-
+<div ng-controller="TableController as tc" class="task-table-container">
+    <table class="task-table-container_data-table" ng-show="tc.displayedData">
+        <tbody>
+            <tr ng-repeat="item in tc.displayedData track by $index">
+                <td ng-repeat="cell in item">
+                    {{cell.name}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div></div>
 </div>

@@ -1,7 +1,9 @@
 angular.module('wmt-table', [])
-    .controller('TableController', function TableController() {
+    .controller('TableController', ['$scope', function TableController($scope) {
         var self = this;
-        self.data = [];
+        self.storedData = [];
+        self.displayedData = [];
+        self.lastGrabbedIndex = 0;
 
         function generateData(dim1, dim2) {
             let generatedData = [];
@@ -35,10 +37,30 @@ angular.module('wmt-table', [])
             return generatedData;
         }
 
+        function appendData(size) {
+            self.displayedData = self.displayedData.concat(self.storedData.slice(self.lastGrabbedIndex, self.lastGrabbedIndex+size));
+            self.lastGrabbedIndex += size;
+        }
+
+        function applyHandlers() {
+            $('.task-table-container')
+                .on('scroll', function(e) {
+                    if((self.displayedData.length - self.pageCapacity)*32 - e.target.scrollTop <= 32
+                        && self.displayedData.length < self.storedData.length) {
+                        $scope.$apply(function() {
+                            appendData(10);
+                        });
+                    }
+                });
+        }
+
         function init() {
-            self.data = generateData(8, 256);
+            self.pageCapacity = Math.floor((window.innerHeight - angular.element('.task-table-container_data-table').offset().top)/32);
+            self.storedData = generateData(256, 8);
+            appendData(self.pageCapacity + 10);
+            applyHandlers();
         }
 
         init();
 
-    });
+    }]);
