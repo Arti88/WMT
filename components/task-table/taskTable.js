@@ -52,6 +52,13 @@ angular.module('wmt-table', [])
                         });
                     }
                 });
+
+            $('.task-table-container_data-table').on('click', 'td', function(e) {
+                let $cell = $(e.target),
+                    color = $cell.data('color');
+                $cell.css('background-color', color);
+
+            });
         }
 
         function init() {

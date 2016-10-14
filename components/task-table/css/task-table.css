@@ -18,10 +18,15 @@
     top: 0;
     left: 0;
 }
-.task-table-container .task-table-container_data-table th,
+
 .task-table-container .task-table-container_data-table td {
     box-sizing: border-box;
     width: 300px!important;
     height: 32px!important;
     text-align: center;
+    transition: all linear 1.5s
+}
+
+.task-table-container .task-table-container_data-table td:hover {
+    cursor: pointer;
 }

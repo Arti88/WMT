@@ -2,7 +2,7 @@
     <table class="task-table-container_data-table" ng-show="tc.displayedData">
         <tbody>
             <tr ng-repeat="item in tc.displayedData track by $index">
-                <td ng-repeat="cell in item">
+                <td ng-repeat="cell in item" data-color="{{cell.color}}">
                     {{cell.name}}
                 </td>
             </tr>
