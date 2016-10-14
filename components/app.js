@@ -1,5 +1,6 @@
 var myApp = angular.module('wmt', [
-    'ui.router'
+    'ui.router',
+    'wmt-table'
 ]);
 myApp.config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -16,19 +17,4 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     ;
     $urlRouterProvider
         .otherwise('/');
-
-
-    /*let taskGreetingState = {
-            name: 'greeting',
-            url: '/',
-            templateUrl: 'components/task-greeting/templates/task-greeting.tmpl.html'
-        },
-        taskTableState = {
-            name: 'table',
-            url: '/table',
-            templateUrl: 'components/task-table/templates/task-table.tmpl.html'
-        };
-
-    $stateProvider.state(taskGreetingState);
-    $stateProvider.state(taskTableState);*/
 });
